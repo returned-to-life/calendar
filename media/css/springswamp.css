@@ -1,0 +1,37 @@
+table.partcalendar {
+    border: 2px solid #533;
+    background-color: #69676b;
+    table-layout: fixed;
+}
+table.partcalendar td {
+  color: #7ec13b;
+  border: 1px solid #988;
+  background-color: #69676b;
+  text-align: center;
+}
+table.partcalendar td.clicked {
+	color: #80ff00;
+}
+table.partcalendar td.holiday {
+	color: #dd7722;
+}
+table.partcalendar td.clicked.holiday {
+	color: #ffbb22;
+}
+body {
+    background-color: #79736f;
+}
+input[type="submit"] {
+  border: 1px solid #95763e;
+  background-color: #ee9944;
+  color: #841;
+  width: 100%;
+}
+input[type="text"] {
+  border: 1px solid #302c3a;
+  background-color: #789836;
+  color: #80ff00;
+  width: 100%;
+  text-align: right;
+}
+

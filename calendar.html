@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>Part of Calendar</title>
+	<link rel="stylesheet" type="text/css" href="media/css/springswamp.css" />
+	<link rel="icon" type="image/png" href="media/app.ico">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="media/js/jquery.js"></script>
+	<script type="text/javascript" src="media/js/underscore-min.js"></script>                     
+	<script type="text/javascript" src="media/js/partcalendar.js"></script>
+</head>
+
+<body>
+
+<script id="partcalendar_tpl" type="text/html">
+	<table class="partcalendar">
+	<tr><%
+		for (var i = 0; i < pc.length; i++) {
+			if ( pc[i].is_empty )
+				print('<td class="empty"></td>');
+			else if ( pc[i].is_caption ) { 
+				print('<td colspan=7>');
+				print( partcalendar.monthAsString(pc[i].date.getMonth()) + " " + pc[i].date.getFullYear() ); 
+				print('</td></tr><tr>');  
+				for (var j = 1; j <= 7; j++)
+					print('<td class="header">' + partcalendar.dayOfWeekAsString(j) + '</td>');
+				print('</tr><tr>');
+			}
+			else {
+				print('<td');
+				print((pc[i].is_holiday) ? ' class="holiday"' : '');
+				print(' id="' + partcalendar.make_cell_id( pc[i].id ) + '"');
+				print(' onclick="partcalendar.click(this);"');
+				print('>');
+				print( pc[i].date.getDate() );
+				print('</td>');
+			}
+			if ( pc[i].is_end_of_week )
+				print('</tr><tr>');
+		}
+	%></tr></table>
+</script>
+
+<table><tr>
+	<td width=30% id="calendar_place"></td>
+	<td><form><label for="target_input">Some field on a Some form</label>
+		<input type="text" id="target_input" onclick="this.select();">
+		<input type="submit" value="Send">
+		</form>
+	</td>
+</tr></table>
+		
+<script type="text/javascript">
+	partcalendar.initTemplates();
+	var dateStart = new Date(),
+		dateEnd = new Date();
+	dateEnd.setDate(dateStart.getDate() + 64);
+
+	partcalendar.make_calendar("calendar_place", dateStart, dateEnd, "target_input");
+</script>
+
+</body>
+</html>
